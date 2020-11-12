@@ -1,0 +1,29 @@
+RPO & RTO for single AZ outage:
+-------------------------------
+In case of single AZ outage, the chances of data loss are negligible since due to multi-AZ setup, failover happens automatically.
+Hence, ideally, RPO should be near zero. An RPO of 1 minute is reasonable.
+Minimum RTO can be assumed to be 2 minutes considering switchover to RDS instance in different AZ.  
+
+RPO & RTO for single region outage: 
+-----------------------------------
+In case of single region outage, the following factors needs to be considered for calculating RPO:
+ 1. Replica lag/network latency between source & destination regions 
+ 2. The replication is asynchronous between source & destination regions.
+ 3. Promotion of read replica is manual process.
+ 4. Low time to recover as read replica has running DB instance
+
+Considering the above, minimum RPO can be assumed to be 5 min.
+
+Minimum RTO for single region outage can be arrived at as follows: 
+00:00 - Problem happens (0 minutes)
+00:05 - An amount of time passes before an alert triggers (5 minutes)
+00:06 - Alert reaches on-call staff (1 minute)
+00:15 - On-call staff logs in (9 minutes)
+00:20 - On-call staff starts troubleshooting (5 minutes)
+00:30 - Root cause analysis is done (10 minutes)
+00:35 - Remediation starts (5 minutes)
+00:40 - Remediation completes (10 minutes)
+   As per above, minimum RTO for single region outage is assumed to be 40 min. 
+
+
+
