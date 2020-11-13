@@ -12,7 +12,7 @@ In case of single region outage, the following factors needs to be considered fo
  3. Promotion of read replica is manual process.
  4. Low time to recover as read replica has running DB instance
 
-Considering the above, minimum RPO can be assumed to be 5 min.
+Considering the above, minimum RPO can be assumed to be 10 min.
 
 Minimum RTO for single region outage can be arrived at as follows: 
 00:00 - Problem happens (0 minutes)
